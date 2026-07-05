@@ -5,8 +5,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-import java.util.function.DoubleSupplier;
-
 public class Drivetrain {
     private DcMotor frontLeftDrive, backLeftDrive, frontRightDrive, backRightDrive;
     private Telemetry telemetry;
