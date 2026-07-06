@@ -24,7 +24,7 @@ public class Hood {
     }
 
     public void update(boolean button) {
-        telemetry.addData("[Hood] State: ", state);
+        telemetry.addData("[Hood] State ", state);
 
         if (button) {
             setState(state == State.UP ? State.DOWN : State.UP);
