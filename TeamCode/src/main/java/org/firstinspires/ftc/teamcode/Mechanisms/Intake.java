@@ -9,6 +9,8 @@ public class Intake {
     private DcMotor intakeMotor;
     private Telemetry telemetry;
 
+    private Beam beam;
+
     public enum State {
         RUNNING,
         STOPPED
@@ -17,8 +19,9 @@ public class Intake {
     public State state = State.STOPPED;
     private boolean prevButton = false;
 
-    public Intake(HardwareMap hm, Telemetry telemetry) {
+    public Intake(HardwareMap hm, Telemetry telemetry, Beam beam) {
         this.telemetry = telemetry;
+        this.beam = beam;
         intakeMotor = hm.get(DcMotor.class, "intake");
     }
 
@@ -28,6 +31,18 @@ public class Intake {
         }
         prevButton = button;
 
+
+        if (beam.getBreakCount() >= 3 && state == State.RUNNING) {
+            setState(State.STOPPED);
+            beam.resetCount();
+        }
+
+        // testing code
+//        if (state == State.STOPPED){
+//            beam.resetCount();
+//        }
+
+        telemetry.addData("[Intake] Counter", beam.getBreakCount());
         telemetry.addData("[Intake] State", state);
     }
 

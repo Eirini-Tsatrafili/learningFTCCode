@@ -15,7 +15,8 @@ public class Hood {
         DOWN
     }
 
-    public State state = State.DOWN, prev_state = State.DOWN;
+    public State state = State.DOWN;
+    private boolean prevButton = false;
     private double MIN_HOOD = 0.2, MAX_HOOD = 0.8;
 
     public Hood(HardwareMap hm, Telemetry telemetry) {
@@ -24,16 +25,16 @@ public class Hood {
     }
 
     public void update(boolean button) {
-        telemetry.addData("[Hood] State ", state);
 
-        if (button) {
+        if (button && !prevButton) {
             setState(state == State.UP ? State.DOWN : State.UP);
         }
+        prevButton = button;
+
+        telemetry.addData("[Hood] State ", state);
     }
 
     public void setState(State state) {
-        if (state == prev_state) return;
-        prev_state = this.state;
         this.state = state;
 
         switch (state) {
