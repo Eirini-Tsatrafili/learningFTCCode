@@ -49,7 +49,7 @@ public class TeleOP extends LinearOpMode {
 
             beam.update();
             intake.update(gamepad1.right_bumper);
-            turret.update(gamepad1.a);
+            turret.update(gamepad1.a, gamepad1.b);
 
             telemetry.update();
         }

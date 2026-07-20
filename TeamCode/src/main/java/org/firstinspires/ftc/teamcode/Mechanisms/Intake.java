@@ -32,17 +32,11 @@ public class Intake {
         prevButton = button;
 
 
-        if (beam.getBreakCount() >= 3 && state == State.RUNNING) {
+        if (beam.getDetectFlag() && state == State.RUNNING) {
             setState(State.STOPPED);
-            beam.resetCount();
         }
 
-        // testing code
-//        if (state == State.STOPPED){
-//            beam.resetCount();
-//        }
-
-        telemetry.addData("[Intake] Counter", beam.getBreakCount());
+        telemetry.addData("[Intake] artifact3 Detected", beam.getDetectFlag());
         telemetry.addData("[Intake] State", state);
     }
 
