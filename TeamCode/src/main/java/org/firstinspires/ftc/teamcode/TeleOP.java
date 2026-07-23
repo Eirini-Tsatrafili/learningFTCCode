@@ -11,6 +11,9 @@ import org.firstinspires.ftc.teamcode.Mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.Mechanisms.RobotIMU;
 import org.firstinspires.ftc.teamcode.Mechanisms.Turret;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
+
 @TeleOp(name="Basic: Omni Linear OpMode", group="Linear OpMode")
 public class TeleOP extends LinearOpMode {
     private Drivetrain drivetrain;
@@ -23,6 +26,9 @@ public class TeleOP extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+
         drivetrain = new Drivetrain(hardwareMap, telemetry);
 //        hood = new Hood(hardwareMap, telemetry);
         imu = new RobotIMU(hardwareMap, telemetry);
