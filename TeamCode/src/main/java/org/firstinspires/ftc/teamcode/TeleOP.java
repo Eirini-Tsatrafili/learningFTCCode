@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Mechanisms.AutoShooter;
 import org.firstinspires.ftc.teamcode.Mechanisms.Beam;
 import org.firstinspires.ftc.teamcode.Mechanisms.Drivetrain;
 import org.firstinspires.ftc.teamcode.Mechanisms.Hood;
@@ -23,6 +24,7 @@ public class TeleOP extends LinearOpMode {
     private Intake intake;
     private Beam beam;
     private Turret turret;
+    private AutoShooter autoShooter;
 
     @Override
     public void runOpMode() {
@@ -36,6 +38,7 @@ public class TeleOP extends LinearOpMode {
         intake = new Intake(hardwareMap, telemetry, beam);
         hood2 = new Hood2(hardwareMap, telemetry);
         turret = new Turret(hardwareMap, telemetry);
+        autoShooter = new AutoShooter(hardwareMap, telemetry, intake, beam);
 
         waitForStart();
 
@@ -56,6 +59,8 @@ public class TeleOP extends LinearOpMode {
             beam.update();
             intake.update(gamepad1.right_bumper);
             turret.update(gamepad1.a, gamepad1.b);
+
+            autoShooter.update(gamepad1.left_bumper);
 
             telemetry.update();
         }

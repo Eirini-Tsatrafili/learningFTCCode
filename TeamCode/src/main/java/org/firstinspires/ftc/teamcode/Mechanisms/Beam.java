@@ -47,4 +47,6 @@ public class Beam {
     }
 
     public boolean getDetectFlag(){ return artifact3Detected;}
+
+    public void reset(){ artifact3Detected = false;}
 }

@@ -10,7 +10,7 @@ public class Hood2 {
     private ServoImplEx hoodServo;
     private Telemetry telemetry;
 
-    private double MIN_HOOD = 0.2, MAX_HOOD = 0.7;
+    private double MIN_HOOD = 0.3, MAX_HOOD = 0.8;
 
     private double pos = 0.0;
 
