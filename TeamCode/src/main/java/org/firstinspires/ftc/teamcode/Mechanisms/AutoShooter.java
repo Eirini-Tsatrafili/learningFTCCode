@@ -30,7 +30,7 @@ public class AutoShooter {
 
     private double FINGER_OPEN = 1.0;
     private double FINGER_CLOSED = 0.6;
-    private double RAMP_UP = 1.0;
+    private double RAMP_UP = 0.7;
     private double RAMP_DOWN = 0.5;
 
     private long shootStartTime = 0;
@@ -105,6 +105,7 @@ public class AutoShooter {
 
             case SHOOTER_PREP:
                 intake.setState(Intake.State.STOPPED);
+                intake.setShooterFlag(true);
                 shooterMotor1.setPower(SHOOTER_POWER);
                 shooterMotor2.setPower(SHOOTER_POWER);
                 break;
@@ -117,6 +118,7 @@ public class AutoShooter {
                 break;
 
             case RESET:
+                intake.setShooterFlag(false);
                 shooterMotor1.setPower(0);
                 shooterMotor2.setPower(0);
                 intake.setState(Intake.State.STOPPED);

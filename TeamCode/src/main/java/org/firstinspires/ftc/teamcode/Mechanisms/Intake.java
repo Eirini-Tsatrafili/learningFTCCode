@@ -19,6 +19,8 @@ public class Intake {
     public State state = State.STOPPED;
     private boolean prevButton = false;
 
+    private boolean shooterFlag = false;
+
     public Intake(HardwareMap hm, Telemetry telemetry, Beam beam) {
         this.telemetry = telemetry;
         this.beam = beam;
@@ -32,7 +34,7 @@ public class Intake {
         prevButton = button;
 
 
-        if (beam.getDetectFlag() && state == State.RUNNING) {
+        if (beam.getDetectFlag() && state == State.RUNNING && !shooterFlag) {
             setState(State.STOPPED);
         }
 
@@ -51,5 +53,9 @@ public class Intake {
                 intakeMotor.setPower(0.0);
                 break;
         }
+    }
+
+    public void setShooterFlag(boolean flag){
+        this.shooterFlag = flag;
     }
 }
