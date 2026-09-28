@@ -106,9 +106,6 @@ public class Turret {
         } else {
             timerFlag = false;
         }
-
-        telemetry.addData("[Turret] ZEROING", "");
-        telemetry.addData("[Turret] current ", String.format("%.2f", turretMotor.getCurrent(CurrentUnit.AMPS)));
     }
 
 
